@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    // Type Checking
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "strictPropertyInitialization": false,
+
+    // Modules
+    "esModuleInterop": true,
+    "moduleResolution": "nodenext",
+    "module": "NodeNext",
+
+    // Emit
+    "declaration": false,
+    "declarationMap": false,
+    "skipLibCheck": true,
+    "stripInternal": true,
+
+    // Interop Constraints
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true
+  }
+}

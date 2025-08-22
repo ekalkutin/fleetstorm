@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": true,
+    "sourceMap": true,
+    "target": "esnext",
+    "sourceRoot": "./src",
+    "rootDir": "./src",
+    "baseUrl": "./",
+    "outDir": "build",
+
+    "paths": {
+      "infrastructure/*": ["./src/infrastructure/*"],
+      "features/*": ["./src/features/*"]
+    }
+  },
+  "include": ["src/"]
+}
