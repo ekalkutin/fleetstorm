@@ -13,7 +13,7 @@
 
     "paths": {
       "features/*": ["./src/features/*"],
-      "shared/*": ["./src/shared/*"]
+      "common/*": ["./src/common/*"]
     }
   },
   "include": ["src/"]
