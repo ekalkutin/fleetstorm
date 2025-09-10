@@ -1,20 +1,12 @@
 import { GUID } from 'common/domain/value-objects/guid.vo';
 
 import { Tenant } from '../aggregates/tenant';
-import { SubscriptionPlan } from '../value-objects/subscription-plan.vo';
-import { TenantName } from '../value-objects/tenant-name.vo';
-
-type Props = {
-  readonly guid?: string;
-  readonly name?: string;
-};
+import { TenantProfile } from '../entities/tenant-profile.entity';
 
 export class TenantFactory {
-  static create(props?: Props): Tenant {
-    return new Tenant(
-      GUID.create(props?.guid),
-      TenantName.create(),
-      SubscriptionPlan.create(),
-    );
+  static create(): Tenant {
+    const tenantGuid = GUID.create();
+
+    return new Tenant(tenantGuid, new TenantProfile(GUID.create(), tenantGuid));
   }
 }

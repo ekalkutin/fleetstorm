@@ -10,9 +10,7 @@ export class TenantPersistenceMapper {
     };
   }
 
-  public toDomain(model: TenantModel): Tenant {
-    return TenantFactory.create({
-      guid: model.id,
-    });
+  public toDomain(): Tenant {
+    return TenantFactory.create();
   }
 }

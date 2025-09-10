@@ -2,14 +2,12 @@ import { AggregateRoot } from '@nestjs/cqrs';
 
 import { GUID } from 'common/domain/value-objects/guid.vo';
 
-import { SubscriptionPlan } from '../value-objects/subscription-plan.vo';
-import { TenantName } from '../value-objects/tenant-name.vo';
+import { TenantProfile } from '../entities/tenant-profile.entity';
 
 export class Tenant extends AggregateRoot {
   public constructor(
     private readonly _guid: GUID,
-    private readonly _name: TenantName,
-    private readonly _subscriptionPlan: SubscriptionPlan,
+    private readonly _profile: TenantProfile,
   ) {
     super();
   }
