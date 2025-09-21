@@ -12,6 +12,10 @@ export class ConfigurationService {
     console.log(`Environment: ${configService.get('NODE_ENV')}`);
   }
 
+  public get JWT_SALT(): string {
+    return this.configService.get('JWT_SALT', { infer: true })!;
+  }
+
   public get ROOT_EMAIL(): string {
     return this.configService.get('ROOT_EMAIL')!;
   }

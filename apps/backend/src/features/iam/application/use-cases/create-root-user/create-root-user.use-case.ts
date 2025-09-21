@@ -28,7 +28,7 @@ export class CreateRootUserUseCase {
 
     const user = new UserBuilder()
       .withEmail(root_email)
-      .withRole(role.id)
+      .withRole(role.id.value)
       .build();
 
     if (!(await this.userRepository.findByEmail(root_email))) {

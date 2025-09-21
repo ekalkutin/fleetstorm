@@ -27,11 +27,13 @@ describe('UseCase: Create root user', () => {
     const root_email = configService.ROOT_EMAIL;
 
     // act
+
     await useCase.execute();
     const user = await userRepo.findByEmail(root_email);
 
     // assert
     expect(user).toBeDefined();
+    expect(user!.email.value).toBe('root@test-env.com');
     expect(user!.tenantId).toBe(null);
   });
 });

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Car Rental & Fleet Management Platform – Modern booking system with availability tracking, timeline visualization, and automation tools for small & medium businesses.",
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "jest --config jest.config.ts"
   },
   "repository": {
     "type": "git",

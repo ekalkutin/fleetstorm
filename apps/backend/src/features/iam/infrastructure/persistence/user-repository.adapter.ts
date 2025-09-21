@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 
 import { UserRepositoryPort } from 'features/iam/application/ports/user-repository.port';
 import { User } from 'features/iam/domain/aggregates/user.aggregate';
+import { UserBuilder } from 'features/iam/domain/builders/user.builder';
 import { PrismaService } from 'shared/infrastructure/persistence/database/prisma.service';
 
 import { UserMapper } from './user.mapper';
@@ -46,13 +47,34 @@ export class UserRepositoryAdapter implements UserRepositoryPort {
   }
 
   public async findByEmail(email: string): Promise<User | null> {
+    const user = new UserBuilder();
+
     const result = await this.prisma.user.findUnique({
       where: {
         email,
       },
+      include: {
+        roles: {
+          select: {
+            role: {
+              select: {
+                id: true,
+              },
+            },
+          },
+        },
+      },
     });
 
     if (!result) return null;
-    return UserMapper.toDomain(result);
+
+    user
+      .withId(result.id)
+      .withEmail(result.email)
+      .withTenantId(result.tenantId);
+
+    result.roles.map(role => user.withRole(role.role.id));
+
+    return user.build();
   }
 }

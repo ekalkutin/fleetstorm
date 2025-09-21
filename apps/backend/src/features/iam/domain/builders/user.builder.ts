@@ -34,8 +34,8 @@ export class UserBuilder {
     return this;
   }
 
-  public withRole(roleId: GUID): this {
-    this.roleIds.push(roleId);
+  public withRole(roleId: string): this {
+    this.roleIds.push(GUID.create(roleId));
     return this;
   }
 

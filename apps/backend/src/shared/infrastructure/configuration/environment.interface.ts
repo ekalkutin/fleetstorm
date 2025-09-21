@@ -13,6 +13,7 @@ interface DatabaseEnv {
 
 export interface EnvironmentConfig extends RootAccountEnv, DatabaseEnv {
   readonly NODE_ENV: NodeEnv;
+  readonly JWT_SALT: string;
 }
 
 export type NodeEnv = 'development' | 'testing';

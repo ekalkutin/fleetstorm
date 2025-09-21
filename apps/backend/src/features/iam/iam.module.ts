@@ -5,10 +5,12 @@ import { ConfigurationModule } from 'shared/infrastructure/configuration/configu
 import { DatabaseModule } from 'shared/infrastructure/persistence/database/database.module';
 
 import { RoleRepositoryPort } from './application/ports/role-repository.port';
+import { UserIdentityPort } from './application/ports/user-identity.port';
 import { UserRepositoryPort } from './application/ports/user-repository.port';
 import { CreateRootUserUseCase } from './application/use-cases/create-root-user/create-root-user.use-case';
 import { RoleRepositoryAdapter } from './infrastructure/persistence/role-repository.adapter';
 import { UserRepositoryAdapter } from './infrastructure/persistence/user-repository.adapter';
+import { UserIdentityAdapter } from './infrastructure/user-identity.adapter';
 
 @Module({
   imports: [ConfigurationModule, DatabaseModule, TenantModule],
@@ -22,7 +24,11 @@ import { UserRepositoryAdapter } from './infrastructure/persistence/user-reposit
       provide: RoleRepositoryPort,
       useClass: RoleRepositoryAdapter,
     },
+    {
+      provide: UserIdentityPort,
+      useClass: UserIdentityAdapter,
+    },
   ],
-  exports: [UserRepositoryPort, RoleRepositoryPort],
+  exports: [UserIdentityPort],
 })
 export class IAMModule {}
