@@ -1,8 +1,16 @@
-import { GUID } from 'common/domain/value-objects/guid.vo';
+import { GUID } from 'shared/domain/value-objects/guid.vo';
+import { Phone } from 'shared/domain/value-objects/phone.vo';
 
 export class TenantProfile {
   constructor(
-    public readonly guid: GUID,
-    public readonly tenantId: GUID,
+    public readonly id: GUID,
+    public readonly phone: Phone,
   ) {}
+
+  static create(props?: { id?: string; phone?: string }): TenantProfile {
+    return new TenantProfile(
+      GUID.create(props?.id),
+      new Phone(props?.phone || '+7 930 222 44 98'),
+    );
+  }
 }

@@ -1,0 +1,7 @@
+model TenantProfile {
+  id     String   @id
+  phone  String
+  tenant Tenant[]
+
+  @@map("tenant_profiles")
+}

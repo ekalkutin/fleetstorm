@@ -1,0 +1,8 @@
+model Tenant {
+  id        String        @id
+  profileId String
+  profile   TenantProfile @relation(fields: [profileId], references: [id])
+  user      User[]
+
+  @@map("tenants")
+}

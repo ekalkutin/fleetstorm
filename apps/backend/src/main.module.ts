@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
 
-import { DatabaseModule } from 'common/infrastructure/persistence/database/database.module';
+import { IAMModule } from 'features/iam/iam.module';
 import { TenantModule } from 'features/tenant/tenant.module';
+import { ConfigurationModule } from 'shared/infrastructure/configuration/configuration.module';
+import { DatabaseModule } from 'shared/infrastructure/persistence/database/database.module';
 
 @Module({
-  imports: [DatabaseModule, TenantModule],
+  imports: [ConfigurationModule, DatabaseModule, TenantModule, IAMModule],
 })
 export class MainModule {}
