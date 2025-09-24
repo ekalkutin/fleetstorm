@@ -1,9 +1,9 @@
 model User {
-  id       String     @id
-  email    String     @unique
-  tenantId String?    @map("tenant_id")
-  roles    UserRole[]
-  tenant   Tenant?    @relation(fields: [tenantId], references: [id])
+  id             String @id
+  username       String @unique
+  hashedPassword String @map("hashed_password")
+
+  account Account?
 
   @@map("users")
 }

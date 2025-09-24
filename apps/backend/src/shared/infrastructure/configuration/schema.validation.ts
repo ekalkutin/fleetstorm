@@ -3,7 +3,7 @@ import Joi, { ObjectSchema } from 'joi';
 import { type EnvironmentConfig } from './environment.interface';
 
 const ENV_SCHEMA_VALIDATION: ObjectSchema<EnvironmentConfig> = Joi.object({
-  ROOT_EMAIL: Joi.string().required(),
+  ROOT_USERNAME: Joi.string().required(),
   ROOT_PASSWORD: Joi.string().required(),
 
   JWT_SALT: Joi.string().required(),

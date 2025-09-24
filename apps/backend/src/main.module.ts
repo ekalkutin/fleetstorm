@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 
 import { AuthModule } from 'features/auth/auth.module';
+import { BootstrapModule } from 'features/bootstrap/bootstrap.module';
 import { IAMModule } from 'features/iam/iam.module';
 import { TenantModule } from 'features/tenant/tenant.module';
 import { ConfigurationModule } from 'shared/infrastructure/configuration/configuration.module';
@@ -10,6 +11,7 @@ import { DatabaseModule } from 'shared/infrastructure/persistence/database/datab
   imports: [
     ConfigurationModule,
     DatabaseModule,
+    BootstrapModule,
     AuthModule,
     TenantModule,
     IAMModule,

@@ -5,7 +5,7 @@ import { ConfigurationService } from 'shared/infrastructure/configuration/config
 
 import { UserRepositoryPort } from '../../ports/user-repository.port';
 
-import { CreateRootUserUseCase } from './create-root-user.use-case';
+import { CreateRootUserUseCase } from './create-root.use-case';
 
 describe('UseCase: Create root user', () => {
   let useCase: CreateRootUserUseCase;
@@ -24,16 +24,15 @@ describe('UseCase: Create root user', () => {
 
   it('should create root user without tenant', async () => {
     // arrange
-    const root_email = configService.ROOT_EMAIL;
+    const { username } = configService.ROOT_USER;
 
     // act
 
     await useCase.execute();
-    const user = await userRepo.findByEmail(root_email);
+    const user = await userRepo.findByUsername(username);
 
     // assert
     expect(user).toBeDefined();
-    expect(user!.email.value).toBe('root@test-env.com');
-    expect(user!.tenantId).toBe(null);
+    expect(user!.username).toBe('root@test-env.com');
   });
 });

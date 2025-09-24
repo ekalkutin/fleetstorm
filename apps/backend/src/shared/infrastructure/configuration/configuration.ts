@@ -5,7 +5,7 @@ export default (): EnvironmentConfig => {
     NODE_ENV: process.env.NODE_ENV! as NodeEnv,
     JWT_SALT: process.env.JWT_SALT!,
 
-    ROOT_EMAIL: process.env.ROOT_EMAIL!,
+    ROOT_USERNAME: process.env.ROOT_EMAIL!,
     ROOT_PASSWORD: process.env.ROOT_PASSWORD!,
 
     DB_HOST: process.env.DB_HOST!,

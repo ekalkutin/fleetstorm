@@ -1,10 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 
 import { Role } from 'features/iam/domain/aggregates/role.aggregate';
-import { UserBuilder } from 'features/iam/domain/builders/user.builder';
+import { User } from 'features/iam/domain/aggregates/user.aggregate';
 import { RoleFactory } from 'features/iam/domain/factories/role.factory';
+import { GUID } from 'shared/domain/value-objects/guid.vo';
 import { ConfigurationService } from 'shared/infrastructure/configuration/configuration.service';
 
+import { AccountRepositoryPort } from '../../ports/account-repository.port';
 import { RoleRepositoryPort } from '../../ports/role-repository.port';
 import { UserRepositoryPort } from '../../ports/user-repository.port';
 
@@ -19,21 +21,26 @@ export class CreateRootUserUseCase {
 
     @Inject(UserRepositoryPort)
     private readonly userRepository: UserRepositoryPort,
+
+    @Inject(AccountRepositoryPort)
+    private readonly accountRepository: AccountRepositoryPort,
   ) {}
 
   public async execute(): Promise<void> {
-    const role = await this.createRootRoleIfNotExists();
+    await this.createRootRoleIfNotExists();
+    await this.createRootUserIfNotExists();
+  }
 
-    const root_email = this.configurarionService.ROOT_EMAIL;
+  private async createRootUserIfNotExists(): Promise<User> {
+    const { username, password } = this.configurarionService.ROOT_USER;
 
-    const user = new UserBuilder()
-      .withEmail(root_email)
-      .withRole(role.id.value)
-      .build();
+    const user = new User(GUID.create(), username, password);
 
-    if (!(await this.userRepository.findByEmail(root_email))) {
+    if (!(await this.userRepository.findByUsername(username))) {
       await this.userRepository.save(user);
     }
+
+    return user;
   }
 
   private async createRootRoleIfNotExists(): Promise<Role> {

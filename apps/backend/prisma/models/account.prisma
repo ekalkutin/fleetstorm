@@ -1,0 +1,13 @@
+model Account {
+  id String @id
+
+  roles AccountRole[]
+
+  tenantId String @map("tenant_id")
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@map("accounts")
+}

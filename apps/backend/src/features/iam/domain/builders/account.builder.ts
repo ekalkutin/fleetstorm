@@ -1,18 +1,15 @@
-import { Email } from 'shared/domain/value-objects/email.vo';
 import { GUID } from 'shared/domain/value-objects/guid.vo';
 
-import { User } from '../aggregates/user.aggregate';
+import { Account } from '../aggregates/account.aggregate';
 
-export class UserBuilder {
+export class AccountBuilder {
   private id!: GUID;
-  private tenantId: GUID | null;
+  private tenantId!: GUID;
+  private userId!: GUID;
   private roleIds: GUID[];
-
-  private email!: Email;
 
   constructor() {
     this.id = GUID.create();
-    this.tenantId = null;
     this.roleIds = [];
   }
 
@@ -29,17 +26,12 @@ export class UserBuilder {
     return this;
   }
 
-  public withEmail(email: string): this {
-    this.email = Email.create(email);
-    return this;
-  }
-
   public withRole(roleId: string): this {
     this.roleIds.push(GUID.create(roleId));
     return this;
   }
 
-  public build(): User {
-    return new User(this.id, this.tenantId, this.roleIds, this.email);
+  public build(): Account {
+    return new Account(this.id, this.tenantId, this.userId, this.roleIds);
   }
 }

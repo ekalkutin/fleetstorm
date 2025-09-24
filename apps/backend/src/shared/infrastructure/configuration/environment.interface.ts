@@ -1,5 +1,5 @@
 interface RootAccountEnv {
-  readonly ROOT_EMAIL: string;
+  readonly ROOT_USERNAME: string;
   readonly ROOT_PASSWORD: string;
 }
 

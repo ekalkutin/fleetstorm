@@ -2,7 +2,8 @@ import { Test } from '@nestjs/testing';
 
 import { AuthModule } from 'features/auth/auth.module';
 import { UserRepositoryPort } from 'features/iam/application/ports/user-repository.port';
-import { UserBuilder } from 'features/iam/domain/builders/user.builder';
+import { User } from 'features/iam/domain/aggregates/user.aggregate';
+import { GUID } from 'shared/domain/value-objects/guid.vo';
 
 import { SignInUseCase } from './sign-in.use-case';
 
@@ -24,13 +25,13 @@ describe('UseCase: Sign-in', () => {
     // arrange
 
     await userRepository.save(
-      new UserBuilder().withEmail('test-user@test-email.com').build(),
+      new User(GUID.create(), 'test-username', 'test-password'),
     );
 
     // act
 
     const authenticatedUser = await useCase.execute(
-      'test-user@test-email.com',
+      'test-username',
       'password',
     );
 

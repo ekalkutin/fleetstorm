@@ -4,21 +4,27 @@ import { AuthenticatedUser } from 'shared/domain/value-objects/authenticated-use
 import { GUID } from 'shared/domain/value-objects/guid.vo';
 import { PrismaService } from 'shared/infrastructure/persistence/database/prisma.service';
 
-import { UserIdentityPort } from '../application/ports/user-identity.port';
+import { IdentityProviderPort } from '../application/ports/identity-provider.port';
 
 @Injectable()
-export class UserIdentityAdapter implements UserIdentityPort {
+export class AccountIdentityAdapter implements IdentityProviderPort {
   constructor(@Inject(PrismaService) private readonly prisma: PrismaService) {}
 
-  public async findByEmail(email: string): Promise<AuthenticatedUser | null> {
+  public async findByUsername(
+    username: string,
+  ): Promise<AuthenticatedUser | null> {
     const user = await this.prisma.user.findUnique({
       where: {
-        email,
+        username,
       },
       include: {
-        roles: {
+        account: {
           include: {
-            role: true,
+            roles: {
+              include: {
+                role: true,
+              },
+            },
           },
         },
       },
@@ -27,6 +33,6 @@ export class UserIdentityAdapter implements UserIdentityPort {
     if (!user) return null;
     console.log({ user });
 
-    return new AuthenticatedUser(GUID.create(user.id), [], []);
+    return new AuthenticatedUser(GUID.create(user.id), []);
   }
 }

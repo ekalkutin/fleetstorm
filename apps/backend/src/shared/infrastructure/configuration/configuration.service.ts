@@ -16,8 +16,11 @@ export class ConfigurationService {
     return this.configService.get('JWT_SALT', { infer: true })!;
   }
 
-  public get ROOT_EMAIL(): string {
-    return this.configService.get('ROOT_EMAIL')!;
+  public get ROOT_USER() {
+    return {
+      username: this.configService.get('ROOT_USERNAME')!,
+      password: this.configService.get('ROOT_PASSWORD')!,
+    };
   }
 
   public get DB_CONNECTION(): string {
