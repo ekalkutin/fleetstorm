@@ -2,8 +2,8 @@ import { Inject } from '@nestjs/common';
 
 import { PermissionCode } from 'common/constants/permissions';
 import { IdentityProviderPort } from 'features/iam/application/ports/identity-provider.port';
-import { PrismaService } from 'shared/persistence/database/prisma.service';
-import { GUID } from 'shared/value-objects/guid.vo';
+import { GUID } from 'shared/core/domain/value-objects/guid.vo';
+import { PrismaService } from 'shared/infrastructure/persistence/database/prisma.service';
 
 export class IdentityProviderAdapter implements IdentityProviderPort {
   constructor(@Inject(PrismaService) private readonly prisma: PrismaService) {}

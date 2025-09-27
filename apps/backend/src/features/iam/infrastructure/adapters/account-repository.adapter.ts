@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 
 import { AccountRepositoryPort } from 'features/iam/application/ports/account-repository.port';
 import { Account } from 'features/iam/domain/aggregates/account.aggregate';
-import { PrismaService } from 'shared/persistence/database/prisma.service';
+import { PrismaService } from 'shared/infrastructure/persistence/database/prisma.service';
 
 import { AccountMapper } from './account.mapper';
 

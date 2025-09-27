@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 
 import { IdentityProviderPort } from 'features/iam/application/ports/identity-provider.port';
 import { ConfigurationService } from 'shared/configuration/configuration.service';
-import { HasherPort } from 'shared/ports/hasher.port';
+import { HasherPort } from 'shared/core/ports/hasher.port';
 
 @Injectable()
 export class SignInUseCase {

@@ -1,6 +1,6 @@
 import { PermissionCode } from 'common/constants/permissions';
 
-import { GUID } from './guid.vo';
+import { GUID } from '../value-objects/guid.vo';
 
 export type AuthenticatedUserPayload = {
   readonly id: string;

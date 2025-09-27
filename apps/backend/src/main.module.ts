@@ -5,7 +5,7 @@ import { AuthModule } from 'features/auth/auth.module';
 import { IAMModule } from 'features/iam/iam.module';
 import { TenantModule } from 'features/tenant/tenant.module';
 import { ConfigurationModule } from 'shared/configuration/configuration.module';
-import { DatabaseModule } from 'shared/persistence/database/database.module';
+import { DatabaseModule } from 'shared/infrastructure/persistence/database/database.module';
 
 @Module({
   imports: [

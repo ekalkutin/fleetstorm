@@ -8,7 +8,7 @@ import { Reflector } from '@nestjs/core';
 
 import { PermissionCode } from 'common/constants/permissions';
 import { REQUIRED_PERMISSIONS_KEY } from 'common/decoratos/permissions.decorator';
-import { AuthenticatedUser } from 'shared/value-objects/authenticated-user.vo';
+import { AuthenticatedUser } from 'shared/core/domain/entities/authenticated-user.vo';
 
 @Injectable()
 export class PermissionGuard implements CanActivate {

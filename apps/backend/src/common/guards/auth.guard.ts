@@ -12,8 +12,8 @@ import { ConfigurationService } from 'shared/configuration/configuration.service
 import {
   AuthenticatedUser,
   AuthenticatedUserPayload,
-} from 'shared/value-objects/authenticated-user.vo';
-import { GUID } from 'shared/value-objects/guid.vo';
+} from 'shared/core/domain/entities/authenticated-user.vo';
+import { GUID } from 'shared/core/domain/value-objects/guid.vo';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

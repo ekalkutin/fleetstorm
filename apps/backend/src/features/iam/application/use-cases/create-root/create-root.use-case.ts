@@ -6,8 +6,8 @@ import { User } from 'features/iam/domain/aggregates/user.aggregate';
 import { AccountBuilder } from 'features/iam/domain/builders/account.builder';
 import { RoleFactory } from 'features/iam/domain/factories/role.factory';
 import { ConfigurationService } from 'shared/configuration/configuration.service';
-import { HasherPort } from 'shared/ports/hasher.port';
-import { GUID } from 'shared/value-objects/guid.vo';
+import { GUID } from 'shared/core/domain/value-objects/guid.vo';
+import { HasherPort } from 'shared/core/ports/hasher.port';
 
 import { AccountRepositoryPort } from '../../ports/account-repository.port';
 import { RoleRepositoryPort } from '../../ports/role-repository.port';

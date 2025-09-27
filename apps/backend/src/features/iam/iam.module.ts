@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 
 import { TenantModule } from 'features/tenant/tenant.module';
-import { HasherAdapter } from 'shared/adapters/hasher.adapter';
 import { ConfigurationModule } from 'shared/configuration/configuration.module';
-import { DatabaseModule } from 'shared/persistence/database/database.module';
-import { HasherPort } from 'shared/ports/hasher.port';
+import { HasherPort } from 'shared/core/ports/hasher.port';
+import { HasherAdapter } from 'shared/infrastructure/adapters/hasher.adapter';
+import { DatabaseModule } from 'shared/infrastructure/persistence/database/database.module';
 
 import { CreateRootController } from './api/create-root.controller';
 import { QueryUsersController } from './api/query-users.controller';

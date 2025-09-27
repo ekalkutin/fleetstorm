@@ -3,7 +3,7 @@ import { createHmac, timingSafeEqual } from 'node:crypto';
 import { Inject, Injectable } from '@nestjs/common';
 
 import { ConfigurationService } from 'shared/configuration/configuration.service';
-import { HasherPort } from 'shared/ports/hasher.port';
+import { HasherPort } from 'shared/core/ports/hasher.port';
 
 @Injectable()
 export class HasherAdapter implements HasherPort {

@@ -2,8 +2,8 @@ import { Inject, Injectable } from '@nestjs/common';
 
 import { UserRepositoryPort } from 'features/iam/application/ports/user-repository.port';
 import { User } from 'features/iam/domain/aggregates/user.aggregate';
-import { PrismaService } from 'shared/persistence/database/prisma.service';
-import { GUID } from 'shared/value-objects/guid.vo';
+import { GUID } from 'shared/core/domain/value-objects/guid.vo';
+import { PrismaService } from 'shared/infrastructure/persistence/database/prisma.service';
 
 @Injectable()
 export class UserRepositoryAdapter implements UserRepositoryPort {
