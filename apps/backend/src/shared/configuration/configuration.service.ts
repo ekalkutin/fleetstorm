@@ -16,6 +16,10 @@ export class ConfigurationService {
     return this.configService.get('APP_JWT_SECRET', { infer: true })!;
   }
 
+  public get APP_SALT(): string {
+    return this.configService.get('APP_SALT', { infer: true })!;
+  }
+
   public get ROOT_USER() {
     return {
       username: this.configService.get('ROOT_USERNAME')!,

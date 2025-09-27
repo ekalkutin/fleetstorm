@@ -4,6 +4,7 @@ export default (): EnvironmentConfig => {
   return {
     NODE_ENV: process.env.NODE_ENV! as NodeEnv,
     APP_JWT_SECRET: process.env.APP_JWT_SECRET!,
+    APP_SALT: process.env.APP_SALT!,
 
     ROOT_USERNAME: process.env.ROOT_EMAIL!,
     ROOT_PASSWORD: process.env.ROOT_PASSWORD!,

@@ -2,6 +2,8 @@ import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 import { IdentityProviderPort } from 'features/iam/application/ports/identity-provider.port';
+import { ConfigurationService } from 'shared/configuration/configuration.service';
+import { HasherPort } from 'shared/ports/hasher.port';
 
 @Injectable()
 export class SignInUseCase {
@@ -10,6 +12,12 @@ export class SignInUseCase {
     private readonly identityProvider: IdentityProviderPort,
 
     @Inject(JwtService) private readonly jwtService: JwtService,
+
+    @Inject(HasherPort)
+    private readonly hasher: HasherPort,
+
+    @Inject(ConfigurationService)
+    private readonly configurationService: ConfigurationService,
   ) {}
 
   public async execute(
@@ -18,12 +26,19 @@ export class SignInUseCase {
   ): Promise<{
     accessToken: string;
   }> {
-    const user = await this.identityProvider.findByUsername(username);
-    void password;
+    const identity = await this.identityProvider.findByUsername(username);
 
-    if (!user) throw new UnauthorizedException();
+    if (!identity || !this.hasher.compare(password, identity.hashedPassword)) {
+      throw new UnauthorizedException();
+    }
 
-    const token = this.jwtService.sign(user.toJSON(), {});
+    const token = this.jwtService.sign(
+      {
+        id: identity.id.value,
+        permissions: identity.permissions,
+      },
+      {},
+    );
 
     return {
       accessToken: token,

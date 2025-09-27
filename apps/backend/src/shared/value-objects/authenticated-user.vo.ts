@@ -18,11 +18,4 @@ export class AuthenticatedUser {
       permission => permission === requiredPermission,
     );
   }
-
-  public toJSON(): AuthenticatedUserPayload {
-    return {
-      id: this.id.value,
-      permissions: this.permissions,
-    };
-  }
 }

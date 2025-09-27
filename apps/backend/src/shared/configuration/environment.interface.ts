@@ -14,6 +14,7 @@ interface DatabaseEnv {
 export interface EnvironmentConfig extends RootAccountEnv, DatabaseEnv {
   readonly NODE_ENV: NodeEnv;
   readonly APP_JWT_SECRET: string;
+  readonly APP_SALT: string;
 }
 
 export type NodeEnv = 'development' | 'testing';
