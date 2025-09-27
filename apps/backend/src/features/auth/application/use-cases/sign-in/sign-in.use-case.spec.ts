@@ -47,8 +47,6 @@ describe('UseCase: Sign-in', () => {
       'test-password',
     );
 
-    console.log({ authenticatedUser });
-
     // assert
     expect(authenticatedUser).not.toBe(null);
   });

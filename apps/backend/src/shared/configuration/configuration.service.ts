@@ -8,9 +8,7 @@ export class ConfigurationService {
   constructor(
     @Inject(ConfigService)
     private readonly configService: ConfigService<EnvironmentConfig>,
-  ) {
-    console.log(`Environment: ${configService.get('NODE_ENV')}`);
-  }
+  ) {}
 
   public get APP_JWT_SECRET(): string {
     return this.configService.get('APP_JWT_SECRET', { infer: true })!;

@@ -64,7 +64,6 @@ export class CreateRootUserUseCase {
       await this.userRepository.save(user);
     }
 
-    console.log(user);
     return user;
   }
 

@@ -5,8 +5,6 @@ import configuration from './configuration';
 import { ConfigurationService } from './configuration.service';
 import ENV_SCHEMA_VALIDATION from './schema.validation';
 
-console.log(`LOADING: .env.${process.env.NODE_ENV}`);
-
 @Module({
   imports: [
     ConfigModule.forRoot({
