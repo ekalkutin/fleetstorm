@@ -1,4 +1,4 @@
-import { GUID } from 'shared/domain/value-objects/guid.vo';
+import { GUID } from 'shared/value-objects/guid.vo';
 
 import { Permission } from '../value-objects/permissions/permission.vo';
 

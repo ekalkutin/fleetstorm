@@ -1,4 +1,4 @@
-import { GUID } from 'shared/domain/value-objects/guid.vo';
+import { GUID } from 'shared/value-objects/guid.vo';
 
 import { Account } from '../aggregates/account.aggregate';
 
@@ -23,6 +23,11 @@ export class AccountBuilder {
       this.tenantId = GUID.create(tenantId);
     }
 
+    return this;
+  }
+
+  public withUserId(userId: string): this {
+    this.userId = GUID.create(userId);
     return this;
   }
 

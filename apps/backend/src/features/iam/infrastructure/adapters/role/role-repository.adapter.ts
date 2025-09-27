@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { RoleRepositoryPort } from 'features/iam/application/ports/role-repository.port';
 import { Role } from 'features/iam/domain/aggregates/role.aggregate';
 import { PermissionFactory } from 'features/iam/domain/factories/permission.factory';
-import { PrismaService } from 'shared/infrastructure/persistence/database/prisma.service';
+import { PrismaService } from 'shared/persistence/database/prisma.service';
 
 import { RoleMapper } from './role.mapper';
 
@@ -31,8 +31,6 @@ export class RoleRepositoryAdapter implements RoleRepositoryPort {
     });
 
     if (!result) return null;
-
-    console.log(result);
 
     return Role.create({
       id: result.id,

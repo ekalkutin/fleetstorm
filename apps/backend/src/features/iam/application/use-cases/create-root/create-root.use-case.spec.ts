@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 
 import { IAMModule } from 'features/iam/iam.module';
-import { ConfigurationService } from 'shared/infrastructure/configuration/configuration.service';
+import { ConfigurationService } from 'shared/configuration/configuration.service';
 
 import { UserRepositoryPort } from '../../ports/user-repository.port';
 

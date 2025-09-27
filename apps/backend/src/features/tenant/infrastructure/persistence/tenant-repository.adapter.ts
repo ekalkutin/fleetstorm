@@ -3,8 +3,8 @@ import { Inject, Injectable } from '@nestjs/common';
 import { TenantRepositoryPort } from 'features/tenant/application/ports/tenant-repository.port';
 import { Tenant } from 'features/tenant/domain/aggregates/tenant.aggregate';
 import { TenantProfile } from 'features/tenant/domain/entities/tenant-profile.entity';
-import { GUID } from 'shared/domain/value-objects/guid.vo';
-import { PrismaService } from 'shared/infrastructure/persistence/database/prisma.service';
+import { PrismaService } from 'shared/persistence/database/prisma.service';
+import { GUID } from 'shared/value-objects/guid.vo';
 
 import { TenantProfileMapper } from './tenant-profile.mapper';
 import { TenantMapper } from './tenant.mapper';

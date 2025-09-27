@@ -7,7 +7,7 @@ export class AccountMapper {
   public static toModel(account: Account): AccountModel {
     return {
       id: account.id.value,
-      tenantId: account.tenantId.value,
+      tenantId: account.tenantId?.value || null,
       userId: account.userId.value,
     };
   }

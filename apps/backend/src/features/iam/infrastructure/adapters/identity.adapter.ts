@@ -1,9 +1,9 @@
 import { Inject } from '@nestjs/common';
 
 import { IdentityProviderPort } from 'features/iam/application/ports/identity-provider.port';
-import { AuthenticatedUser } from 'shared/domain/value-objects/authenticated-user.vo';
-import { GUID } from 'shared/domain/value-objects/guid.vo';
-import { PrismaService } from 'shared/infrastructure/persistence/database/prisma.service';
+import { PrismaService } from 'shared/persistence/database/prisma.service';
+import { AuthenticatedUser } from 'shared/value-objects/authenticated-user.vo';
+import { GUID } from 'shared/value-objects/guid.vo';
 
 export class IdentityProviderAdapter implements IdentityProviderPort {
   constructor(@Inject(PrismaService) private readonly prisma: PrismaService) {}
@@ -15,12 +15,17 @@ export class IdentityProviderAdapter implements IdentityProviderPort {
       where: {
         username: email,
       },
-      include: {
+      select: {
+        id: true,
         account: {
-          include: {
+          select: {
             roles: {
-              include: {
-                role: true,
+              select: {
+                role: {
+                  select: {
+                    permissions: true,
+                  },
+                },
               },
             },
           },
@@ -32,13 +37,10 @@ export class IdentityProviderAdapter implements IdentityProviderPort {
 
     const roles = user.account.roles;
     const permissions = roles.reduce((result, { role }) => {
-      result.concat(role.permissions);
+      result = result.concat(role.permissions);
       return result;
     }, [] as string[]);
 
-    return {
-      id: GUID.create(),
-      permissions,
-    };
+    return new AuthenticatedUser(GUID.create(user.id), permissions);
   }
 }

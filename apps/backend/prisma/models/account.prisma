@@ -3,8 +3,8 @@ model Account {
 
   roles AccountRole[]
 
-  tenantId String @map("tenant_id")
-  tenant   Tenant @relation(fields: [tenantId], references: [id])
+  tenantId String? @map("tenant_id")
+  tenant   Tenant? @relation(fields: [tenantId], references: [id])
 
   userId String @unique
   user   User   @relation(fields: [userId], references: [id])

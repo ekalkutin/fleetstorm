@@ -2,8 +2,8 @@ import { Inject, Injectable } from '@nestjs/common';
 
 import { UserRepositoryPort } from 'features/iam/application/ports/user-repository.port';
 import { User } from 'features/iam/domain/aggregates/user.aggregate';
-import { GUID } from 'shared/domain/value-objects/guid.vo';
-import { PrismaService } from 'shared/infrastructure/persistence/database/prisma.service';
+import { PrismaService } from 'shared/persistence/database/prisma.service';
+import { GUID } from 'shared/value-objects/guid.vo';
 
 @Injectable()
 export class UserRepositoryAdapter implements UserRepositoryPort {
@@ -43,6 +43,19 @@ export class UserRepositoryAdapter implements UserRepositoryPort {
       GUID.create(result.id),
       result.username,
       result.hashedPassword,
+    );
+  }
+
+  public async find(): Promise<User[]> {
+    const results = await this.prisma.user.findMany();
+
+    return results.map(
+      result =>
+        new User(
+          GUID.create(result.id),
+          result.username,
+          result.hashedPassword,
+        ),
     );
   }
 }

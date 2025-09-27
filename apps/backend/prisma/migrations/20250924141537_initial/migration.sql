@@ -9,7 +9,7 @@ CREATE TABLE "public"."account_roles" (
 -- CreateTable
 CREATE TABLE "public"."accounts" (
     "id" TEXT NOT NULL,
-    "tenant_id" TEXT NOT NULL,
+    "tenant_id" TEXT,
     "userId" TEXT NOT NULL,
 
     CONSTRAINT "accounts_pkey" PRIMARY KEY ("id")
@@ -67,7 +67,7 @@ ALTER TABLE "public"."account_roles" ADD CONSTRAINT "account_roles_roleId_fkey" 
 ALTER TABLE "public"."account_roles" ADD CONSTRAINT "account_roles_accountId_fkey" FOREIGN KEY ("accountId") REFERENCES "public"."accounts"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "public"."accounts" ADD CONSTRAINT "accounts_tenant_id_fkey" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."accounts" ADD CONSTRAINT "accounts_tenant_id_fkey" FOREIGN KEY ("tenant_id") REFERENCES "public"."tenants"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "public"."accounts" ADD CONSTRAINT "accounts_userId_fkey" FOREIGN KEY ("userId") REFERENCES "public"."users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

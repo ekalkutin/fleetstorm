@@ -9,6 +9,7 @@ const config: Config.InitialOptions = {
   moduleNameMapper: {
     '^shared/(.*)$': '<rootDir>/src/shared/$1',
     '^features/(.*)$': '<rootDir>/src/features/$1',
+    '^common/(.*)$': '<rootDir>/src/common/$1',
   },
   coverageDirectory: 'coverage',
   collectCoverageFrom: ['src/**/*.ts', '!src/**/*.module.ts'],

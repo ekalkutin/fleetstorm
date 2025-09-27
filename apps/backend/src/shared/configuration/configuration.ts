@@ -3,7 +3,7 @@ import { type NodeEnv, type EnvironmentConfig } from './environment.interface';
 export default (): EnvironmentConfig => {
   return {
     NODE_ENV: process.env.NODE_ENV! as NodeEnv,
-    JWT_SALT: process.env.JWT_SALT!,
+    APP_JWT_SECRET: process.env.APP_JWT_SECRET!,
 
     ROOT_USERNAME: process.env.ROOT_EMAIL!,
     ROOT_PASSWORD: process.env.ROOT_PASSWORD!,

@@ -6,7 +6,7 @@ const ENV_SCHEMA_VALIDATION: ObjectSchema<EnvironmentConfig> = Joi.object({
   ROOT_USERNAME: Joi.string().required(),
   ROOT_PASSWORD: Joi.string().required(),
 
-  JWT_SALT: Joi.string().required(),
+  APP_JWT_SECRET: Joi.string().required(),
 
   DB_HOST: Joi.string().required(),
   DB_PORT: Joi.number().default(27017),

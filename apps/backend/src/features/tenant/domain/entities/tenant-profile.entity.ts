@@ -1,5 +1,5 @@
-import { GUID } from 'shared/domain/value-objects/guid.vo';
-import { Phone } from 'shared/domain/value-objects/phone.vo';
+import { GUID } from 'shared/value-objects/guid.vo';
+import { Phone } from 'shared/value-objects/phone.vo';
 
 export class TenantProfile {
   constructor(

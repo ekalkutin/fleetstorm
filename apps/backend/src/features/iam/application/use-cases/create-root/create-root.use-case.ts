@@ -3,8 +3,8 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Role } from 'features/iam/domain/aggregates/role.aggregate';
 import { User } from 'features/iam/domain/aggregates/user.aggregate';
 import { RoleFactory } from 'features/iam/domain/factories/role.factory';
-import { GUID } from 'shared/domain/value-objects/guid.vo';
-import { ConfigurationService } from 'shared/infrastructure/configuration/configuration.service';
+import { ConfigurationService } from 'shared/configuration/configuration.service';
+import { GUID } from 'shared/value-objects/guid.vo';
 
 import { AccountRepositoryPort } from '../../ports/account-repository.port';
 import { RoleRepositoryPort } from '../../ports/role-repository.port';

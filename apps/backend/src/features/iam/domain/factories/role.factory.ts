@@ -1,3 +1,5 @@
+import { Permissions } from 'common/constants/permissions';
+
 import { Role } from '../aggregates/role.aggregate';
 
 import { PermissionFactory } from './permission.factory';
@@ -8,7 +10,7 @@ export class RoleFactory {
       code: 'Root',
       title: 'Super user',
       description: 'Super user has full access',
-      permissions: [PermissionFactory.Root],
+      permissions: [PermissionFactory.fromCode(Permissions.IAM.Root)],
     });
   }
 }

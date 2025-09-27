@@ -2,7 +2,7 @@ import { createHmac, timingSafeEqual } from 'node:crypto';
 
 import { Inject, Injectable } from '@nestjs/common';
 
-import { ConfigurationService } from 'shared/infrastructure/configuration/configuration.service';
+import { ConfigurationService } from 'shared/configuration/configuration.service';
 
 @Injectable()
 export class HashingService {
@@ -12,7 +12,7 @@ export class HashingService {
     @Inject(ConfigurationService)
     private readonly configurationService: ConfigurationService,
   ) {
-    this.salt = configurationService.JWT_SALT;
+    this.salt = configurationService.APP_JWT_SECRET;
   }
 
   public hash(value: string): string {
