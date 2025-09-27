@@ -1,0 +1,10 @@
+model Role {
+  id          String        @id
+  code        String        @unique
+  title       String
+  description String
+  permissions String[]
+  accounts    AccountRole[]
+
+  @@map("roles")
+}

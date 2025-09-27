@@ -1,6 +1,6 @@
 services:
   database:
-    container_name: postgres_fleetstorm
+    container_name: db_fleetstorm
     image: postgres
     environment:
       POSTGRES_PASSWORD: postgres
@@ -11,5 +11,18 @@ services:
     ports:
       - '5432:5432'
 
+  database_test:
+    container_name: db_fleetstorm_test
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: fleetstorm_test
+    volumes:
+      - postgres_data_test:/var/lib/postgresql/data
+    ports:
+      - '5433:5432'
+
 volumes:
   postgres_data:
+  postgres_data_test:
