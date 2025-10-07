@@ -29,7 +29,6 @@
     "sourceMap": true,
     "target": "esnext",
     "sourceRoot": "./src",
-    "rootDir": "./src",
     "baseUrl": "./",
     "outDir": "build",
 
