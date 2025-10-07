@@ -20,6 +20,22 @@
 
     // Interop Constraints
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+
+    // Decorators
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
+    "sourceMap": true,
+    "target": "esnext",
+    "sourceRoot": "./src",
+    "baseUrl": "./",
+    "outDir": "build",
+
+    "paths": {
+      "features/*": ["./src/features/*"],
+      "shared/*": ["src/shared/*"],
+      "common/*": ["src/common/*"]
+    }
   }
 }
